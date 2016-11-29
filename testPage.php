@@ -41,7 +41,8 @@
             
             if($result->num_rows >0){           //check if query results in more than 0 rows
                 while($row = $result->fetch_assoc()){   //loop until all rows in result are fetched
-                    echo "Name: "."<a href = testPage2.php>".$row["Name"]."</a>"."<br>"; //here we are looking at one row, and printing the value in "names" column
+                    $holder = $row["Name"];
+                    echo "Name: "."<a href = searchPage.php?category=$holder>".$row["Name"]."</a>"."<br>"; //here we are looking at one row, and printing the value in "names" column
                 }
             }
             
