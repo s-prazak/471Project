@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<!--
-Manmeet Dhaliwal
-471 Sample project to show connection to local database
--->
 <html>
     <head>
         <meta charset="UTF-8">

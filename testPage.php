@@ -6,6 +6,11 @@
     </head>
     <body>
         <h1>Store Front</h1>
+        <form action="testPage2.php">
+            Search Bar:<br>
+        <input type="text" name="search"><br>
+        <input type="submit" value="Submit"><br>
+        </form>
         <?php
             // put your code here
             $servername = "localhost";          //should be same for you
@@ -17,8 +22,6 @@
             
             if($conn->connect_error){
                 die("Connection failed".$conn->connect_error);
-            }else{
-                echo "Connected<br>";
             }
             
             //sql query
@@ -33,7 +36,7 @@
             
             //sql query
             $sql = "SELECT Name FROM category";
-            echo "<br><br>Printing names in the Category table:<br>";
+            echo "<br><br>Categories:<br>";
             $result = $conn->query($sql);       //execute the query
             
             if($result->num_rows >0){           //check if query results in more than 0 rows

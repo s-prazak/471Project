@@ -115,7 +115,6 @@ CREATE TABLE `product` (
 # Data for table "product"
 #
 
-
 #
 # Structure for table "sells"
 #
