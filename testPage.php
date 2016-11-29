@@ -5,7 +5,7 @@
         <title>Hello</title>
     </head>
     <body>
-        <h1>Demo for 471</h1>
+        <h1>Store Front</h1>
         <?php
             // put your code here
             $servername = "localhost";          //should be same for you
@@ -38,7 +38,7 @@
             
             if($result->num_rows >0){           //check if query results in more than 0 rows
                 while($row = $result->fetch_assoc()){   //loop until all rows in result are fetched
-                    echo "Name: ".$row["Name"]."<br>"; //here we are looking at one row, and printing the value in "names" column
+                    echo "Name: "."<a href = testPage2.php>".$row["Name"]."</a>"."<br>"; //here we are looking at one row, and printing the value in "names" column
                 }
             }
             
