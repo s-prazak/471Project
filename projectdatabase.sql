@@ -22,7 +22,10 @@ CREATE TABLE `category` (
 # Data for table "category"
 #
 
-INSERT INTO `category` VALUES ('Furniture'),('Entertainment'),('Floral'),('Cooking'),('Clothing');
+INSERT INTO `category` VALUES ('Furniture'),('Movies'),('Food'),('Clothing'),
+('Jewelery'), ('Automotive'), ('Assorted Trinkets'),('Music'), ('Electronics'), ('Video Games'), 
+('Toys'), ('Furnaces'), ('Sports & Outdoors');
+
 
 #
 # Structure for table "order"
@@ -55,6 +58,8 @@ CREATE TABLE `store` (
 # Data for table "store"
 #
 
+INSERT INTO `store` VALUES ('Amazon', 'amazon.ca'), ('Walmart', 'walmart.ca'), 
+('Costco', 'costco.ca');
 
 #
 # Structure for table "has"
@@ -90,6 +95,8 @@ CREATE TABLE `supplier` (
 # Data for table "supplier"
 #
 
+INSERT INTO `supplier` VALUES ('BigSupplier', 20), ('Microsoft', 20), 
+('Unilever', 50), ('Coca-Cola', 20), ('The_Brick', 50);
 
 #
 # Structure for table "product"
@@ -114,6 +121,11 @@ CREATE TABLE `product` (
 #
 # Data for table "product"
 #
+
+INSERT INTO `product` VALUES (1, 'TurboFlax', 10, 50, 0, 'Food', 'BigSupplier'), 
+(2, 'Broccoli', 5, 200, 0, 'Food', 'BigSupplier'), (3, 'Oranges', 3, 100, 0, 'Food', 'BigSupplier'),
+(4, 'Chair', 100, 30, 0, 'Furniture', 'The_Brick');
+
 
 #
 # Structure for table "sells"
