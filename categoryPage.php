@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>You Made It</title>
+        <title>Search Results</title>
     </head>
     <body>
         <h1>Category Results</h1>
