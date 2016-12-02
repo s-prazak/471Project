@@ -92,25 +92,12 @@ INSERT INTO `has` VALUES ('Amazon', 'Video_Games');
 INSERT INTO `has` VALUES ('Amazon', 'Toys');
 INSERT INTO `has` VALUES ('Amazon', 'Furnaces');
 INSERT INTO `has` VALUES ('Amazon', 'Sports_&_Outdoors');
-INSERT INTO `has` VALUES ('Walmart', 'Furniture');
-INSERT INTO `has` VALUES ('Walmart', 'Movies');
-INSERT INTO `has` VALUES ('Walmart', 'Food');
-INSERT INTO `has` VALUES ('Walmart', 'Clothing');
 INSERT INTO `has` VALUES ('Walmart', 'Jewelery');
 INSERT INTO `has` VALUES ('Walmart', 'Automotive');
 INSERT INTO `has` VALUES ('Walmart', 'Assorted_Trinkets');
 INSERT INTO `has` VALUES ('Costco', 'Electronics');
 INSERT INTO `has` VALUES ('Costco', 'Video_Games');
 INSERT INTO `has` VALUES ('Costco', 'Toys');
-INSERT INTO `has` VALUES ('Costco', 'Furnaces');
-INSERT INTO `has` VALUES ('Costco', 'Sports_&_Outdoors');
-INSERT INTO `has` VALUES ('Costco', 'Furniture');
-INSERT INTO `has` VALUES ('Costco', 'Movies');
-INSERT INTO `has` VALUES ('Costco', 'Food');
-INSERT INTO `has` VALUES ('Costco', 'Clothing');
-INSERT INTO `has` VALUES ('Costco', 'Jewelery');
-INSERT INTO `has` VALUES ('Costco', 'Automotive');
-INSERT INTO `has` VALUES ('Costco', 'Assorted_Trinkets');
 
 
 #
@@ -200,17 +187,57 @@ INSERT INTO `product` VALUES (39, 'Axe', 12, 5, 0, 'Sports_&_Outdoors', 'Cabella
 
 DROP TABLE IF EXISTS `sells`;
 CREATE TABLE `sells` (
-  `Product_Id` int(11) DEFAULT NULL,
-  `Store_Name` varchar(255) DEFAULT NULL,
-  KEY `Product ID` (`Product_Id`),
-  KEY `Store Name` (`Store_Name`),
-  CONSTRAINT `Product ID` FOREIGN KEY (`Product_Id`) REFERENCES `product` (`Id`),
-  CONSTRAINT `Store Name` FOREIGN KEY (`Store_Name`) REFERENCES `store` (`Name`)
+  `Product_Id` int(11) NOT NULL DEFAULT -1,
+  `Store_Name` varchar(255) NOT NULL DEFAULT 'Store_Name',
+  PRIMARY KEY (`Product_Id`, `Store_Name`),
+  FOREIGN KEY (`Product_Id`) REFERENCES `product` (`Id`),
+  FOREIGN KEY (`Store_Name`) REFERENCES `store` (`Name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #
 # Data for table "sells"
 #
+
+INSERT INTO `sells` VALUES (1, 'Amazon');
+INSERT INTO `sells` VALUES (2, 'Amazon');
+INSERT INTO `sells` VALUES (3, 'Amazon');
+INSERT INTO `sells` VALUES (4, 'Amazon');
+INSERT INTO `sells` VALUES (5, 'Amazon');
+INSERT INTO `sells` VALUES (6, 'Amazon');
+INSERT INTO `sells` VALUES (7, 'Amazon');
+INSERT INTO `sells` VALUES (8, 'Amazon');
+INSERT INTO `sells` VALUES (9, 'Amazon');
+INSERT INTO `sells` VALUES (10, 'Amazon');
+INSERT INTO `sells` VALUES (11, 'Amazon');
+INSERT INTO `sells` VALUES (12, 'Amazon');
+INSERT INTO `sells` VALUES (13, 'Walmart');
+INSERT INTO `sells` VALUES (14, 'Amazon');
+INSERT INTO `sells` VALUES (15, 'Amazon');
+INSERT INTO `sells` VALUES (16, 'Walmart');
+INSERT INTO `sells` VALUES (17, 'Amazon');
+INSERT INTO `sells` VALUES (18, 'Amazon');
+INSERT INTO `sells` VALUES (19, 'Walmart');
+INSERT INTO `sells` VALUES (20, 'Amazon');
+INSERT INTO `sells` VALUES (21, 'Amazon');
+INSERT INTO `sells` VALUES (22, 'Amazon');
+INSERT INTO `sells` VALUES (23, 'Amazon');
+INSERT INTO `sells` VALUES (24, 'Amazon');
+INSERT INTO `sells` VALUES (25, 'Costco');
+INSERT INTO `sells` VALUES (26, 'Amazon');
+INSERT INTO `sells` VALUES (27, 'Amazon');
+INSERT INTO `sells` VALUES (28, 'Costco');
+INSERT INTO `sells` VALUES (29, 'Amazon');
+INSERT INTO `sells` VALUES (30, 'Amazon');
+INSERT INTO `sells` VALUES (31, 'Costco');
+INSERT INTO `sells` VALUES (32, 'Amazon');
+INSERT INTO `sells` VALUES (33, 'Amazon');
+INSERT INTO `sells` VALUES (34, 'Amazon');
+INSERT INTO `sells` VALUES (35, 'Amazon');
+INSERT INTO `sells` VALUES (36, 'Amazon');
+INSERT INTO `sells` VALUES (37, 'Amazon');
+INSERT INTO `sells` VALUES (38, 'Amazon');
+INSERT INTO `sells` VALUES (39, 'Amazon');
+
 
 
 #
@@ -220,12 +247,11 @@ CREATE TABLE `sells` (
 DROP TABLE IF EXISTS `requests`;
 CREATE TABLE `requests` (
   `Number_Of_Products` int(11) DEFAULT NULL,
-  `Product_Id` int(11) DEFAULT NULL,
-  `Order_Id` int(255) DEFAULT NULL,
-  KEY `Product ID3` (`Product_Id`),
-  KEY `Order ID2` (`Order_Id`),
-  CONSTRAINT `Order ID2` FOREIGN KEY (`Order_Id`) REFERENCES `order` (`Id`),
-  CONSTRAINT `Product ID3` FOREIGN KEY (`Product_Id`) REFERENCES `product` (`Id`)
+  `Product_Id` int(11) NOT NULL DEFAULT -1,
+  `Order_Id` int(255) NOT NULL DEFAULT -1,
+  PRIMARY KEY (`Order_Id`, `Product_Id`),
+  FOREIGN KEY (`Order_Id`) REFERENCES `order` (`Id`),
+  FOREIGN KEY (`Product_Id`) REFERENCES `product` (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #
@@ -240,12 +266,11 @@ CREATE TABLE `requests` (
 DROP TABLE IF EXISTS `buys`;
 CREATE TABLE `buys` (
   `Number_Of_Products` int(11) DEFAULT NULL,
-  `Product_Id` int(11) DEFAULT NULL,
-  `Order_Id` int(11) DEFAULT NULL,
-  KEY `Product ID2` (`Product_Id`),
-  KEY `Order ID` (`Order_Id`),
-  CONSTRAINT `Order ID` FOREIGN KEY (`Order_Id`) REFERENCES `order` (`Id`),
-  CONSTRAINT `Product ID2` FOREIGN KEY (`Product_Id`) REFERENCES `product` (`Id`)
+  `Product_Id` int(11) NOT NULL DEFAULT -1,
+  `Order_Id` int(11) NOT NULL DEFAULT -1,
+  PRIMARY KEY (`Order_Id`, `Product_Id`),
+  FOREIGN KEY (`Order_Id`) REFERENCES `order` (`Id`),
+  FOREIGN KEY (`Product_Id`) REFERENCES `product` (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #
