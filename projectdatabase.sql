@@ -66,18 +66,51 @@ INSERT INTO `store` VALUES ('Amazon', 'amazon.ca'), ('Walmart', 'walmart.ca'),
 #
 
 DROP TABLE IF EXISTS `has`;
+
 CREATE TABLE `has` (
-  `Store_Name` varchar(255) DEFAULT NULL,
-  `Category_Name` varchar(255) DEFAULT NULL,
-  KEY `Category Name2` (`Category_Name`),
-  KEY `Store Name2` (`Store_Name`),
-  CONSTRAINT `Category Name2` FOREIGN KEY (`Category_Name`) REFERENCES `category` (`Name`),
-  CONSTRAINT `Store Name2` FOREIGN KEY (`Store_Name`) REFERENCES `store` (`Name`)
+  `Store_Name` varchar(255) NOT NULL DEFAULT 'Name',
+  `Category_Name` varchar(255) NOT NULL DEFAULT 'Cate_Name',
+  PRIMARY KEY(`Store_Name`, `Category_Name`),
+  FOREIGN KEY (`Category_Name`) REFERENCES `category` (`Name`),
+  FOREIGN KEY (`Store_Name`) REFERENCES `store` (`Name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #
 # Data for table "has"
 #
+
+INSERT INTO `has` VALUES ('Amazon', 'Furniture');
+INSERT INTO `has` VALUES ('Amazon', 'Movies');
+INSERT INTO `has` VALUES ('Amazon', 'Food');
+INSERT INTO `has` VALUES ('Amazon', 'Clothing');
+INSERT INTO `has` VALUES ('Amazon', 'Jewelery');
+INSERT INTO `has` VALUES ('Amazon', 'Automotive');
+INSERT INTO `has` VALUES ('Amazon', 'Assorted_Trinkets');
+INSERT INTO `has` VALUES ('Amazon', 'Music');
+INSERT INTO `has` VALUES ('Amazon', 'Electronics');
+INSERT INTO `has` VALUES ('Amazon', 'Video_Games');
+INSERT INTO `has` VALUES ('Amazon', 'Toys');
+INSERT INTO `has` VALUES ('Amazon', 'Furnaces');
+INSERT INTO `has` VALUES ('Amazon', 'Sports_&_Outdoors');
+INSERT INTO `has` VALUES ('Walmart', 'Furniture');
+INSERT INTO `has` VALUES ('Walmart', 'Movies');
+INSERT INTO `has` VALUES ('Walmart', 'Food');
+INSERT INTO `has` VALUES ('Walmart', 'Clothing');
+INSERT INTO `has` VALUES ('Walmart', 'Jewelery');
+INSERT INTO `has` VALUES ('Walmart', 'Automotive');
+INSERT INTO `has` VALUES ('Walmart', 'Assorted_Trinkets');
+INSERT INTO `has` VALUES ('Costco', 'Electronics');
+INSERT INTO `has` VALUES ('Costco', 'Video_Games');
+INSERT INTO `has` VALUES ('Costco', 'Toys');
+INSERT INTO `has` VALUES ('Costco', 'Furnaces');
+INSERT INTO `has` VALUES ('Costco', 'Sports_&_Outdoors');
+INSERT INTO `has` VALUES ('Costco', 'Furniture');
+INSERT INTO `has` VALUES ('Costco', 'Movies');
+INSERT INTO `has` VALUES ('Costco', 'Food');
+INSERT INTO `has` VALUES ('Costco', 'Clothing');
+INSERT INTO `has` VALUES ('Costco', 'Jewelery');
+INSERT INTO `has` VALUES ('Costco', 'Automotive');
+INSERT INTO `has` VALUES ('Costco', 'Assorted_Trinkets');
 
 
 #
