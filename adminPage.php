@@ -2,10 +2,9 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Search Results</title>
+        <title>Admin</title>
     </head>
     <body>
-        <h1>Login</h1>
+        <h1>Admin</h1>
     </body>
 </html>
-

@@ -49,6 +49,6 @@
             $conn-> close();            //close the connection to database
         ?>
         <br><br><br><br><br>
-        <a href="adminPage.php">Admin Login</a>
+        <a href="loginPage.php">Admin Login</a>
     </body>
 </html>
