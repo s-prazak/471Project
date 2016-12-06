@@ -6,10 +6,9 @@
     </head>
     <body>
         <h1>Store Front</h1>
-        <form action="searchPage.php">
-            Search Bar:<br>
-        <input type="text" name="search"><br>
-        <input type="submit" value="Submit"><br>
+        <form action="searchPage.php"> Search Bar:<br>
+            <input type="text" name="search"><br>
+            <input type="submit" value="Submit"><br>
         </form>
         <?php
             // put your code here
