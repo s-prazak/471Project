@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Search Results</title>
+        <link rel="stylesheet" href="storeStyle.css">
     </head>
     <body>
         <h1>Category Results</h1>
@@ -22,14 +23,16 @@
             }
             
             $nameholder = htmlspecialchars($_GET["category"]);
-            $sql = "SELECT Name FROM product WHERE Category_Name = \"" .$nameholder ."\"";
+            $sql = "SELECT Id, Name, Price FROM product WHERE Category_Name = \"" .$nameholder ."\"";
             echo "<br><br>Products:<br>";
             $result = $conn->query($sql);       //execute the query
             
             if($result->num_rows >0){           //check if query results in more than 0 rows
                 while($row = $result->fetch_assoc()){   //loop until all rows in result are fetched
                     $holder = $row["Name"];
-                    echo "Name: "."<a href = categoryPage.php?category=$holder>".$row["Name"]."</a>"."<br>"; //here we are looking at one row, and printing the value in "names" column
+                    echo "ID: " . $row["Id"];
+                    echo " Name: "."<a href = categoryPage.php?category=$holder>".$row["Name"]."</a>"; //here we are looking at one row, and printing the value in "names" column
+                    echo " Price $" . $row["Price"] . "<br>";                    
                 }
             }
             
