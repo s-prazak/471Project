@@ -38,24 +38,25 @@
             
             $quantity = $_POST["quantity"];
             if ($quantity != null) {
-                echo "<br><br>Quantity entered was " . $quantity . "<br>";
-                echo "Stock is " . $stock . "<br>";
+                //echo "<br><br>Quantity entered was " . $quantity . "<br>";
+                //echo "Stock is " . $stock . "<br>";
                 $stock = $stock - $quantity;
-                echo "Updating quantity to " . $stock . "<br>";
+                //echo "Updating quantity to " . $stock . "<br>";
 
                 $sql = "UPDATE Product SET Stock = " . $stock . " WHERE Id = " . $row["Id"];
                 if ($conn->query($sql) === TRUE) {
-                    echo "stock updated successfully!<br>";
+                    //echo "Stock updated successfully!<br>";
                 }
                 else {
-                    echo "Error updating stock<br>";
+                    echo "Error: " . $sql . "<br>" . $conn->error;
                 }
                 
                 $sql = "SELECT Id, Price, Stock FROM product WHERE Name = \"" . $product . "\"";
                 $result = $conn->query($sql);
                 $row = $result->fetch_assoc();
+                header("Refresh:0");
 
-                echo "New stock is " + $row["Stock"];
+                //echo "New stock is " + $row["Stock"];
             }
             
             $conn-> close();            // close the connection to database
