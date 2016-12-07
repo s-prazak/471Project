@@ -38,10 +38,6 @@
                     <input type=\"submit\">
                   </form>";
             
-//            echo "<form action=\"productPage.php?product=$product&restock=true\" method=\"get\">
-//                    <input type=\"submit\" value=\"Restock\" />
-//                </form>";
-            
             echo "<br><br><a href='productPage.php?product=$product&restock=true'>Restock</a>";
             
             if($_GET){
@@ -71,7 +67,6 @@
                         $sql = "SELECT Id FROM `order` ORDER BY Id DESC";
                         $result = $conn->query($sql);
                         $orderId = $result->fetch_assoc();
-                        echo $orderId["Id"];
                         $sql = "INSERT INTO buys VALUES($quantity, " . $row["Id"] . ", " .$orderId["Id"]. ")";
                         if (($conn->query($sql)) === true) {
 
@@ -86,10 +81,6 @@
                     }
                 }
                 else {
-                    echo "<br>Sorry, the quantity requested is greater than the stock available<br>";
-                    echo "Current requested count is " . $row["Requested_Count"] . "<br>";
-                    echo "Current stock is " . $row["Stock"] . "<br>";
-                    
                     $newCount = $row["Requested_Count"] + $quantity - $stock;
                     $update_count = "UPDATE Product SET Requested_Count = " . $newCount . " WHERE Id = " . $row["Id"];
                     $update_stock = "UPDATE Product SET Stock = 0 WHERE Id = " . $row["Id"]; // set stock to 0
@@ -101,10 +92,26 @@
                         $sql = "SELECT * FROM product WHERE Name = \"" . $product . "\"";
                         $result = $conn->query($sql);
                         $row = $result->fetch_assoc();
+                        
+                        $sql = "INSERT INTO `order` VALUES(DEFAULT, 'Address')";
+                        if (($conn->query($sql)) === true) {
+
+                        }
+                        else {
+                            echo "Error: " . $conn->error;
+                        }
+                        $sql = "SELECT Id FROM `order` ORDER BY Id DESC";
+                        $result = $conn->query($sql);
+                        $orderId = $result->fetch_assoc();
+                        $sql = "INSERT INTO requests VALUES($quantity, " . $row["Id"] . ", " .$orderId["Id"]. ")";
+                        if (($conn->query($sql)) === true) {
+
+                        }
+                        else {
+                            echo "Error: " . $sql . "<br>" . $conn->error;
+                        }
+                        
                         header("Refresh:0");
-//                        echo "We have updated our database to request more stock<br>";
-//                        echo "New requested count is " . $row["Requested_Count"] . "<br>";
-//                        echo "New Stock is " . $row["Stock"] . "<br>";
                     }
                     else {
                         echo "Error: " . $sql . "<br>" . $conn->error;
