@@ -7,22 +7,6 @@
     <body>
         <?php
         
-            function restock() {
-                // Get usual stock
-                echo "<br>Updating stock<br>";
-                $query_usual = "SELECT Usual_Stock_Supplied  FROM supplier WHERE supplier.Name = " . row["Supplier_name"];
-                $result_usual = $conn->query($query_usual);
-                $usualStock = $result_usual->fetch_assoc();
-                $stock = $stock + $usualStock + $row["Requested_Count"];
-                $update_stock = "UPDATE Product SET Stock = " . $stock . " WHERE Id = " . $row["Id"];
-                if ($conn->$conn->query($update_stock) === TRUE) {
-                    echo "Updated stock!<br>";
-                }
-                else {
-                    echo "Failed to update stock<br>";
-                }
-            }
-        
             $product = htmlspecialchars($_GET["product"]);
             echo "<h1>" . $product . "</h1>";
             
@@ -54,7 +38,19 @@
                     <input type=\"submit\">
                   </form>";
             
-            echo "<button onclick=\"restock()\">Restock</button>";
+//            echo "<form action=\"productPage.php?product=$product&restock=true\" method=\"get\">
+//                    <input type=\"submit\" value=\"Restock\" />
+//                </form>";
+            
+            echo "<form action=\"productPage.php?product=$product\" method=\"get\">
+                    <input type=\"submit\">
+                  </form>";
+            
+            if($_GET){
+                if(isset($_GET['restock'])){
+                    restock();
+                }
+            }
             
             $quantity = $_POST["quantity"];
             if ($quantity != null) {
@@ -97,6 +93,25 @@
                     else {
                         echo "Error: " . $sql . "<br>" . $conn->error;
                     }
+                }
+            }
+            
+            function restock() {
+                // Get usual stock
+                echo "<br>Updating stock<br>";
+                global $conn, $row;
+                $query_usual = "SELECT Usual_Stock_Supplied  FROM supplier WHERE supplier.Name = \"" . $row["Supplier_Name"] . "\"";
+                $result_usual = $conn->query($query_usual);
+                //echo $conn->error;
+                $usualStock = $result_usual->fetch_assoc();
+                echo "Usual stock is " . $usualStock["Usual_Stock_Supplied"];
+                $stock = $stock + $usualStock["Usual_Stock_Supplied"] + $row["Requested_Count"];
+                $update_stock = "UPDATE Product SET Stock = " . $stock . " WHERE Id = " . $row["Id"];
+                if ($conn->query($update_stock) === TRUE) {
+                    echo "Updated stock!<br>";
+                }
+                else {
+                    echo "Failed to update stock<br>";
                 }
             }
             
