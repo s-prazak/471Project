@@ -14,7 +14,7 @@
             $servername = "localhost";          //should be same for you
             $username = "root";                 //same here
             $password = "admin123";             //your localhost root password
-            $db = "project_database";                     //your database name
+            $db = "project_database";           //your database name
             
             $conn = new mysqli($servername, $username, $password, $db);
             
@@ -61,7 +61,25 @@
                         $sql = "SELECT * FROM product WHERE Name = \"" . $product . "\"";
                         $result = $conn->query($sql);
                         $row = $result->fetch_assoc();
-                        header("Refresh:0");
+                        $sql = "INSERT INTO `order` VALUES(DEFAULT, 'Address')";
+                        if (($conn->query($sql)) === true) {
+
+                        }
+                        else {
+                            echo "Error: " . $conn->error;
+                        }
+                        $sql = "SELECT Id FROM `order` ORDER BY Id DESC";
+                        $result = $conn->query($sql);
+                        $orderId = $result->fetch_assoc();
+                        echo $orderId["Id"];
+                        $sql = "INSERT INTO buys VALUES($quantity, " . $row["Id"] . ", " .$orderId["Id"]. ")";
+                        if (($conn->query($sql)) === true) {
+
+                        }
+                        else {
+                            echo "Error: " . $sql . "<br>" . $conn->error;
+                        }
+                        //header("Refresh:0");
                     }
                     else {
                         echo "Error: " . $sql . "<br>" . $conn->error;
