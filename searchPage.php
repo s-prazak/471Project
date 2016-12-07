@@ -22,7 +22,8 @@
             $get_string = htmlspecialchars($_GET["search"]);
             echo 'You searched for ' . $get_string . "<br><br>";
             echo "Search results that correspond to your query:" . "<br>";
-            $sql = "SELECT Name FROM product WHERE Name LIKE '%$get_string%' ";
+            $sql = "SELECT Id, Name, Price FROM product, sells WHERE Name LIKE '%$get_string%' "
+                    . "AND Id = Product_Id AND Store_Name = 'Amazon' ";
             
             $result = $conn->query($sql);       //execute the query
             
@@ -30,7 +31,9 @@
                 while($row = $result->fetch_assoc()){   //loop until all rows in result are fetched
                     //echo "Product ID:" . $row["Id"] . " - Name: " . $row["Name"] . "<br>";
                     $holder = $row["Name"];
-                    echo "<a href = productPage.php?product=$holder>".$row["Name"]."</a>"."<br>";
+                    echo "ID: " . $row["Id"];
+                    echo "<a href = productPage.php?product=$holder>".$row["Name"]."</a>";
+                    echo " Price $" . $row["Price"] . "<br>";
                 }
             }
             
