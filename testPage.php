@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="storeStyle.css">
         <title>Hello</title>
     </head>
     <body>
@@ -35,7 +36,8 @@
             
             //sql query
             $sql = "SELECT Name FROM category";
-            echo "<br><br>Categories:<br>";
+            echo "<br><br>";
+            echo "<p style='font-family:impact;'>"." Categories:"."</p>";
             $result = $conn->query($sql);       //execute the query
             
             if($result->num_rows >0){           //check if query results in more than 0 rows

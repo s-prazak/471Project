@@ -24,7 +24,7 @@ CREATE TABLE `category` (
 
 INSERT INTO `category` VALUES ('Furniture'),('Movies'),('Food'),('Clothing'),
 ('Jewelery'), ('Automotive'), ('Assorted_Trinkets'),('Music'), ('Electronics'), ('Video_Games'), 
-('Toys'), ('Furnaces'), ('Sports_&_Outdoors');
+('Toys'), ('Furnaces'), ('Sports_and_Outdoors');
 
 
 #
@@ -91,7 +91,7 @@ INSERT INTO `has` VALUES ('Amazon', 'Electronics');
 INSERT INTO `has` VALUES ('Amazon', 'Video_Games');
 INSERT INTO `has` VALUES ('Amazon', 'Toys');
 INSERT INTO `has` VALUES ('Amazon', 'Furnaces');
-INSERT INTO `has` VALUES ('Amazon', 'Sports_&_Outdoors');
+INSERT INTO `has` VALUES ('Amazon', 'Sports_and_Outdoors');
 INSERT INTO `has` VALUES ('Walmart', 'Jewelery');
 INSERT INTO `has` VALUES ('Walmart', 'Automotive');
 INSERT INTO `has` VALUES ('Walmart', 'Assorted_Trinkets');
@@ -175,9 +175,9 @@ INSERT INTO `product` VALUES (33, 'Fisher-Price', 55, 20, 0, 'Toys', 'Mattel');
 INSERT INTO `product` VALUES (34, 'Super_Furnace_3000', 3001, 20, 0, 'Furnaces', 'Big_Furnaces_America');
 INSERT INTO `product` VALUES (35, 'Garbage_Incinerator', 403, 20, 0, 'Furnaces', 'Big_Furnaces_America');
 INSERT INTO `product` VALUES (36, 'Uncontrolled_Fire_Blaster', 2000000, 20, 0, 'Furnaces', 'Big_Furnaces_America');
-INSERT INTO `product` VALUES (37, 'Tent', 100, 10, 0, 'Sports_&_Outdoors', 'Cabellas');
-INSERT INTO `product` VALUES (38, 'Jet_Boil', 50, 15, 0, 'Sports_&_Outdoors', 'Cabellas');
-INSERT INTO `product` VALUES (39, 'Axe', 12, 5, 0, 'Sports_&_Outdoors', 'Cabellas');
+INSERT INTO `product` VALUES (37, 'Tent', 100, 10, 0, 'Sports_and_Outdoors', 'Cabellas');
+INSERT INTO `product` VALUES (38, 'Jet_Boil', 50, 15, 0, 'Sports_and_Outdoors', 'Cabellas');
+INSERT INTO `product` VALUES (39, 'Axe', 12, 5, 0, 'Sports_and_Outdoors', 'Cabellas');
 
 
 
