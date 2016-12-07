@@ -9,7 +9,7 @@
         <h1>Product-Add Information</h1>
         <form action="productAdditionPage.php" method="get">
             Name:<br>
-            <input type="text" name="name" id="name" required><br>
+            <input type="text" name="name" id="name" required autofocus=""><br>
             Price:<br>
             <input type="text" name="price" id="price" required><br>
             Stock:<br>
@@ -35,16 +35,7 @@
                 }
             
             if(isset($_GET['sup_name'])){
-                
-//                $sql = "SELECT Id, MAX(Id) FROM product";
-//                $result = $conn->query($sql);
-//                $row = $result->fetch_assoc();
-                
-//                echo $row["Id"];
-//                $new_ID = ($row["Id"] + 1);
-//                echo $new_ID;
-                
-                
+                          
                 $sql="INSERT INTO `product` VALUES (DEFAULT, '" . $_GET['name'] . 
                         "', " . $_GET['price'] . ", " . $_GET['stock'] . ", 0, '" . $_GET['cat_name'] . "', '" . $_GET['sup_name'] . "')";
                 
@@ -53,7 +44,7 @@
                     echo "Successfully added product<br>";
                 }
                 else {
-                    echo "Error: " . $sql . "<br>" . $conn->error;
+                    echo "Error: " . $conn->error;
                 }
             }
             
