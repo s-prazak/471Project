@@ -11,9 +11,9 @@
             Name:<br>
             <input type="text" name="name" id="name" required autofocus=""><br>
             Price:<br>
-            <input type="text" name="price" id="price" required><br>
+            <input type="number" name="price" id="price" required><br>
             Stock:<br>
-            <input type="text" name="stock" id="stock" required><br>
+            <input type="number" name="stock" id="stock" required><br>
             Category Name:<br>
             <input type="text" name="cat_name" id="cat_name" required><br>
             Supplier Name:<br>

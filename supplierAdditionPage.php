@@ -11,7 +11,7 @@
             Name:<br>
             <input type="text" name="name" id="name" required autofocus=""><br>
             Usual Stock Supplied:<br>
-            <input type="text" name="usual" id="usual" required><br>
+            <input type="number" name="usual" id="usual" required><br>
             <input type="submit" value="Submit"><br>
         </form>
         
