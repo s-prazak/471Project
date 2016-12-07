@@ -31,7 +31,7 @@
                 while($row = $result->fetch_assoc()){   //loop until all rows in result are fetched
                     //echo "Product ID:" . $row["Id"] . " - Name: " . $row["Name"] . "<br>";
                     $holder = $row["Name"];
-                    echo "ID: " . $row["Id"];
+                    echo "ID: " . $row["Id"] . " Name: ";
                     echo "<a href = productPage.php?product=$holder>".$row["Name"]."</a>";
                     echo " Price $" . $row["Price"] . "<br>";
                 }
