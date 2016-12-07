@@ -29,7 +29,6 @@
             if(isset($_GET['name'])){
                 
                 $sql="INSERT INTO `category` VALUES ('". $_GET['name'] ."')";
-                
 
                 if (($conn->query($sql)) === true) {
                     echo "Successfully added category<br>";
@@ -37,6 +36,8 @@
                 else {
                     echo "Error: " . $sql . "<br>" . $conn->error;
                 }
+                $sql="INSERT INTO has VALUES ('Amazon', '" . $_GET['name'] ."')";
+                $result=$conn->query($sql);
             }
             
             $conn->close();

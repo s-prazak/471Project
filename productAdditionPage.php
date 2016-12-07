@@ -46,6 +46,17 @@
                 else {
                     echo "Error: " . $conn->error;
                 }
+                
+                $sqlId="SELECT Id FROM product ORDER BY Id DESC";
+                $result=$conn->query($sqlId);
+                $row = $result->fetch_assoc();
+                
+                $AddSellQuery="INSERT INTO `sells` VALUES (" . $row["Id"] . ", 'Amazon')";
+                if (($conn->query($AddSellQuery)) === true) {
+                }
+                else {
+                    echo "Error: " . $conn->error;
+                }
             }
             
             $conn->close();

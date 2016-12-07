@@ -31,7 +31,7 @@
             if($result->num_rows >0){           //check if query results in more than 0 rows
                 while($row = $result->fetch_assoc()){   //loop until all rows in result are fetched
                     $holder = $row["Name"];
-                    echo "ID: " . $row["Id"];
+                    echo "ID: " . $row["Id"] . " Name: ";
                     echo "<a href = productPage.php?product=$holder>".$row["Name"]."</a>";
                     echo " Price $" . $row["Price"] . "<br>";                    
                 }
