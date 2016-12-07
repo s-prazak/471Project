@@ -23,7 +23,8 @@
             }
             
             $nameholder = htmlspecialchars($_GET["category"]);
-            $sql = "SELECT Id, Name, Price FROM product WHERE Category_Name = \"" .$nameholder ."\"";
+            $sql = "SELECT Id, Name, Price FROM product, sells WHERE Category_Name = \"" .$nameholder ."\""
+                    . "AND Id = Product_Id AND Store_Name = 'Amazon'";
             echo "<br><br>Products:<br>";
             $result = $conn->query($sql);       //execute the query
             

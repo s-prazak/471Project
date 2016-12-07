@@ -9,7 +9,7 @@
         <h1>Login</h1>
         <form>
             Username:<br>
-        <input type="text" name="username" id="username" required><br>
+        <input type="text" name="username" id="username" autofocus required><br>
             Password:<br>
         <input type="password" name="password" id="password" required><br>
         <input type="submit" value="Submit" onclick="return checkLogin()"><br>
