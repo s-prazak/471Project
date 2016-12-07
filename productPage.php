@@ -121,12 +121,10 @@
             
             function restock() {
                 // Get usual stock
-                echo "<br>Updating stock<br>";
                 global $conn, $row, $stock;
                 $query_usual = "SELECT Usual_Stock_Supplied  FROM supplier WHERE supplier.Name = \"" . $row["Supplier_Name"] . "\"";
                 $result_usual = $conn->query($query_usual);
                 $usualStock = $result_usual->fetch_assoc();
-                echo "Usual stock is " . $usualStock["Usual_Stock_Supplied"] . "<br>";
                 $stock += $usualStock["Usual_Stock_Supplied"] + $row["Requested_Count"];
                 
                 // Update stock and requested count
@@ -137,8 +135,7 @@
                 $result_stock = $conn->query($update_stock);
                 
                 if ($result_stock === TRUE && $result_count === TRUE) {
-                    echo "Updated stock!<br>";
-                    //header("Refresh:0");
+                    header("Refresh:0");
                 }
                 else {
                     echo "Failed to update stock<br>";
