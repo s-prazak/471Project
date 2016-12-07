@@ -42,7 +42,7 @@
 //                    <input type=\"submit\" value=\"Restock\" />
 //                </form>";
             
-            echo "<form action=\"productPage.php?product=$product\" method=\"get\">
+            echo "<form action=\"productPage.php?product=$product&restock=true\" method=\"get\">
                     <input type=\"submit\">
                   </form>";
             
@@ -102,12 +102,18 @@
                 global $conn, $row;
                 $query_usual = "SELECT Usual_Stock_Supplied  FROM supplier WHERE supplier.Name = \"" . $row["Supplier_Name"] . "\"";
                 $result_usual = $conn->query($query_usual);
-                //echo $conn->error;
                 $usualStock = $result_usual->fetch_assoc();
-                echo "Usual stock is " . $usualStock["Usual_Stock_Supplied"];
+                echo "Usual stock is " . $usualStock["Usual_Stock_Supplied"] . "<br>";
                 $stock = $stock + $usualStock["Usual_Stock_Supplied"] + $row["Requested_Count"];
-                $update_stock = "UPDATE Product SET Stock = " . $stock . " WHERE Id = " . $row["Id"];
-                if ($conn->query($update_stock) === TRUE) {
+                
+                // Update stock and requested count
+                $update_count = "UPDATE Product SET Stock = " . $stock . " WHERE Id = " . $row["Id"];
+                $update_stock = "UPDATE Product SET Requested_Count = 0 WHERE Id = " . $row["Id"]; // set count to 0
+                
+                $result_count = $conn->query($update_count);
+                $result_stock = $conn->query($update_stock);
+                
+                if ($result_stock === TRUE && $result_count === TRUE) {
                     echo "Updated stock!<br>";
                 }
                 else {
