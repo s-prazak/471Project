@@ -22,7 +22,7 @@
             $get_string = htmlspecialchars($_GET["search"]);
             echo 'You searched for ' . $get_string . "<br><br>";
             echo "Search results that correspond to your query:" . "<br>";
-            $sql = "SELECT Name FROM product WHERE Name = \"" . $get_string . "\"";
+            $sql = "SELECT Name FROM product WHERE Name LIKE '%$get_string%' ";
             
             $result = $conn->query($sql);       //execute the query
             
