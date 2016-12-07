@@ -30,10 +30,10 @@
             echo "Stock: " . $row["Stock"] . "<br><br>";
             
             $stock = $row["Stock"];
-            echo "<form action=\"productPage.php\" method=\"post\">
+            echo "<form action=\"productPage.php?product=$product\" method=\"post\">
                     Requested Quantity:
                     <input type=\"number\" name=\"quantity\" min=\"0\" max=\"" . $stock . "\">
-                    <input type=\"button\">
+                    <input type=\"submit\">
                   </form>";
             
             $quantity = $_POST["quantity"];
