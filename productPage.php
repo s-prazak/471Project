@@ -42,9 +42,7 @@
 //                    <input type=\"submit\" value=\"Restock\" />
 //                </form>";
             
-            echo "<form action=\"productPage.php?product=$product&restock=true\" method=\"get\">
-                    <input type=\"submit\">
-                  </form>";
+            echo "<br><br><a href='productPage.php?product=$product&restock=true'>Restock</a>";
             
             if($_GET){
                 if(isset($_GET['restock'])){
