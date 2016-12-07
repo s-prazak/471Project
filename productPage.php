@@ -6,6 +6,23 @@
     </head>
     <body>
         <?php
+        
+            function restock() {
+                // Get usual stock
+                echo "<br>Updating stock<br>";
+                $query_usual = "SELECT Usual_Stock_Supplied  FROM supplier WHERE supplier.Name = " . row["Supplier_name"];
+                $result_usual = $conn->query($query_usual);
+                $usualStock = $result_usual->fetch_assoc();
+                $stock = $stock + $usualStock + $row["Requested_Count"];
+                $update_stock = "UPDATE Product SET Stock = " . $stock . " WHERE Id = " . $row["Id"];
+                if ($conn->$conn->query($update_stock) === TRUE) {
+                    echo "Updated stock!<br>";
+                }
+                else {
+                    echo "Failed to update stock<br>";
+                }
+            }
+        
             $product = htmlspecialchars($_GET["product"]);
             echo "<h1>" . $product . "</h1>";
             
@@ -21,42 +38,66 @@
                 die("Connection failed".$conn->connect_error);
             }
             
-            $sql = "SELECT Id, Price, Stock FROM product WHERE Name = \"" . $product . "\"";
+            $sql = "SELECT * FROM product WHERE Name = \"" . $product . "\"";
             $result = $conn->query($sql);
             $row = $result->fetch_assoc();
             
             echo "ID: " . $row["Id"] . "<br>";
             echo "Price: " . $row["Price"] . "<br>";
-            echo "Stock: " . $row["Stock"] . "<br><br>";
+            echo "Stock: " . $row["Stock"] . "<br>";
+            echo "Amount Requested: " . $row["Requested_Count"] . "<br><br>";
             
             $stock = $row["Stock"];
             echo "<form action=\"productPage.php?product=$product\" method=\"post\">
-                    Requested Quantity:
-                    <input type=\"number\" name=\"quantity\" min=\"0\" max=\"" . $stock . "\">
+                    Requested buy quantity (maximum of 10):
+                    <input type=\"number\" name=\"quantity\" min=\"0\" max=\"10\">
                     <input type=\"submit\">
                   </form>";
             
+            echo "<button onclick=\"restock()\">Restock</button>";
+            
             $quantity = $_POST["quantity"];
             if ($quantity != null) {
-                //echo "<br><br>Quantity entered was " . $quantity . "<br>";
-                //echo "Stock is " . $stock . "<br>";
-                $stock = $stock - $quantity;
-                //echo "Updating quantity to " . $stock . "<br>";
+                
+                if ($stock >= $quantity) {
+                    $stock = $stock - $quantity;
+                    $sql = "UPDATE Product SET Stock = " . $stock . " WHERE Id = " . $row["Id"];
 
-                $sql = "UPDATE Product SET Stock = " . $stock . " WHERE Id = " . $row["Id"];
-                if ($conn->query($sql) === TRUE) {
-                    //echo "Stock updated successfully!<br>";
+                    if ($conn->query($sql) === TRUE) {
+                        $sql = "SELECT * FROM product WHERE Name = \"" . $product . "\"";
+                        $result = $conn->query($sql);
+                        $row = $result->fetch_assoc();
+                        header("Refresh:0");
+                    }
+                    else {
+                        echo "Error: " . $sql . "<br>" . $conn->error;
+                    }
                 }
                 else {
-                    echo "Error: " . $sql . "<br>" . $conn->error;
+                    echo "<br>Sorry, the quantity requested is greater than the stock available<br>";
+                    echo "Current requested count is " . $row["Requested_Count"] . "<br>";
+                    echo "Current stock is " . $row["Stock"] . "<br>";
+                    
+                    $newCount = $row["Requested_Count"] + $quantity - $stock;
+                    $update_count = "UPDATE Product SET Requested_Count = " . $newCount . " WHERE Id = " . $row["Id"];
+                    $update_stock = "UPDATE Product SET Stock = 0 WHERE Id = " . $row["Id"]; // set stock to 0
+                    
+                    $result_count = $conn->query($update_count);
+                    $result_stock = $conn->query($update_stock);
+                    
+                    if (($result_count === TRUE) && ($result_stock === TRUE)) {
+                        $sql = "SELECT * FROM product WHERE Name = \"" . $product . "\"";
+                        $result = $conn->query($sql);
+                        $row = $result->fetch_assoc();
+                        header("Refresh:0");
+//                        echo "We have updated our database to request more stock<br>";
+//                        echo "New requested count is " . $row["Requested_Count"] . "<br>";
+//                        echo "New Stock is " . $row["Stock"] . "<br>";
+                    }
+                    else {
+                        echo "Error: " . $sql . "<br>" . $conn->error;
+                    }
                 }
-                
-                $sql = "SELECT Id, Price, Stock FROM product WHERE Name = \"" . $product . "\"";
-                $result = $conn->query($sql);
-                $row = $result->fetch_assoc();
-                header("Refresh:0");
-
-                //echo "New stock is " + $row["Stock"];
             }
             
             $conn-> close();            // close the connection to database
