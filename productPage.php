@@ -75,7 +75,7 @@
                         else {
                             echo "Error: " . $sql . "<br>" . $conn->error;
                         }
-                        //header("Refresh:0");
+                        header("Refresh:0");
                     }
                     else {
                         echo "Error: " . $sql . "<br>" . $conn->error;
@@ -126,7 +126,7 @@
                 $query_usual = "SELECT Usual_Stock_Supplied  FROM supplier WHERE supplier.Name = \"" . $row["Supplier_Name"] . "\"";
                 $result_usual = $conn->query($query_usual);
                 $usualStock = $result_usual->fetch_assoc();
-                $stock += $usualStock["Usual_Stock_Supplied"] + $row["Requested_Count"];
+                $stock = $usualStock["Usual_Stock_Supplied"] + $row["Requested_Count"] + $row["Requested_Count"];
                 
                 // Update stock and requested count
                 $update_count = "UPDATE Product SET Stock = " . $stock . " WHERE Id = " . $row["Id"];
@@ -136,7 +136,7 @@
                 $result_stock = $conn->query($update_stock);
                 
                 if ($result_stock === TRUE && $result_count === TRUE) {
-                    header("Refresh:0");
+                    echo "<br> Product has been restocked, please refresh the page to see the new stock";
                 }
                 else {
                     echo "Failed to update stock<br>";
